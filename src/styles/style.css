@@ -1,0 +1,107 @@
+/* This file contains the styles for the application. It includes styles for hiding control elements when printing, as well as general layout and design styles for the tasks and input elements. */
+
+body {
+    font-family: 'Playwrite IT Moderna', Arial, sans-serif; /* Updated font */
+    font-size: 20pt; /* Set font size to 20pt */
+    margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    font-size: 26pt; /* Optional: Adjust the size for headings */
+    text-align: center;
+    color: #333;
+}
+
+#title {
+    font-family: 'Playwrite IT Moderna', Arial, sans-serif; /* Updated font */
+    font-size: 30pt;
+    color: rgb(31, 31, 31);
+    text-align: center;
+}
+
+#task-container {
+    margin: 20px 0;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tasks {
+    margin-top: 20px;
+}
+
+.task {
+    font-family: 'Playwrite IT Moderna', Arial, sans-serif; /* Updated font */
+    font-size: 22pt; /* Set font size to 20pt */
+    font-weight: bold;
+    margin-bottom: 15px; /* Add space between tasks */
+    line-height: 1.4; /* Optional: Improve readability */
+}
+
+input[type="number"] {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.small-input {
+    max-width: 100px; /* Adjust width as needed */
+    padding: 5px;
+    font-size: 14px;
+}
+
+#footer {
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: grey;
+    text-align: center;
+    margin-top: 20px; /* Optional: Add some spacing above the footer */
+}
+
+#icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#icon-print {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+@media print {
+    h1, 
+    form {
+        display: none;
+    }
+    #icon {
+        display: none;
+    }
+    #icon-print {
+        display: flex;
+    }
+}
