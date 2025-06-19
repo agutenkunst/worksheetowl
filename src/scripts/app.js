@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const footer = document.getElementById('footer'); 
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('seed', seed);
-        footer.textContent = `Regenerate with: ${window.location.pathname}?${urlParams.toString()}`;
+        footer.textContent = `Regenerate with: https://agutenkunst.github.io/worksheetowl/?seed=${seed}`;
     }
 
     function generateTasks(maxResult, rng) {
