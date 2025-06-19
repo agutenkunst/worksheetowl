@@ -2,6 +2,8 @@
 
 A single-page application that generates random arithmetic tasks for educational purposes.
 
+Access the page here: https://agutenkunst.github.io/worksheetowl
+
 ## Usage
 
 1. Open `index.html` in a web browser.
