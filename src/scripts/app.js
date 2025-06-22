@@ -5,35 +5,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxResultInput = document.getElementById('max-result');
     const tasksContainer = document.getElementById('tasks');
 
+    // Get the seed from the URL or generate a random one
+    const urlParams = new URLSearchParams(window.location.search);
+    let seed = urlParams.get('seed');
+    if (!seed) {
+        seed = generateRandomSeed();
+        updateUrl(seed)
+    }
+    generateTasks(getMaxResult(), new Math.seedrandom(seed));
+    addFooter(seed);
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
+        let seed = generateRandomSeed();
 
-        // Get the seed from the URL or generate a random one
-        const urlParams = new URLSearchParams(window.location.search);
-        let seed = urlParams.get('seed');
-        if (!seed) {
-            seed = Math.floor(Math.random() * 1000000).toString();
-            urlParams.set('seed', seed);
-        }
+        generateTasks(getMaxResult(), new Math.seedrandom(seed));
+        updateUrl(seed);
+        addFooter(seed);
+    });
 
-        // Initialize the seeded random generator
-        const rng = new Math.seedrandom(seed);
-
+    function getMaxResult() {
         const maxResult = parseInt(maxResultInput.value);
         if (isNaN(maxResult) || maxResult <= 0) {
             alert('Please enter a valid maximum result.');
-            return;
+            return null;
         }
-        generateTasks(maxResult, rng);
-        addFooter(seed);
-    });
+        return maxResult;
+    }
+
+    function generateRandomSeed() {
+        return Math.floor(Math.random() * 1000000).toString();
+    }
 
     function addFooter(seed) {
         const footer = document.getElementById('footer'); 
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('seed', seed);
         footer.textContent = `Regenerate with: https://agutenkunst.github.io/worksheetowl/?seed=${seed}`;
+    }
+
+    function updateUrl(seed) {
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('seed', seed);
+        window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`);
     }
 
     function generateTasks(maxResult, rng) {
