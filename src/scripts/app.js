@@ -115,10 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
         tasksContainer.innerHTML = '';
         for (let i = 0; i < nTasks; i++) {
             const task = createRandomTask(maxResult, rng, calculationTypeRandomList[i % calculationTypeRandomList.length]);
+            const taskLine = document.createElement('div');
+            taskLine.className = 'task-line';
             const taskElement = document.createElement('div');
+            const answerElement = document.createElement('div');
+            answerElement.className = 'answer';
             taskElement.textContent = task;
             taskElement.className = 'task';
-            tasksContainer.appendChild(taskElement);
+            taskLine.appendChild(taskElement);
+            taskLine.appendChild(answerElement);
+            tasksContainer.appendChild(taskLine);
         }
     }
 

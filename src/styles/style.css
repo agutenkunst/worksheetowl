@@ -36,9 +36,22 @@ h1 {
 .task {
     font-family: 'Playwrite IT Moderna', Arial, sans-serif; /* Updated font */
     font-size: 22pt; /* Set font size to 20pt */
+    height: 50px; /* Ensures it takes the full height of the parent */
     font-weight: bold;
     margin-bottom: 15px; /* Add space between tasks */
     line-height: 1.4; /* Optional: Improve readability */
+    margin-right: 20px;
+    justify-content: center;
+}
+
+.answer {
+    flex: 1; /* Makes the element take up available space */
+    height: 50px; /* Ensures it takes the full height of the parent */
+    border: 1px solid #333; /* black border */
+    display: block; /* Ensures content inside is properly aligned */
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    max-width: 100px;
 }
 
 input[type="number"] {
@@ -133,6 +146,11 @@ button:hover {
     display: flex;
     align-items: center; /* Aligns label and input vertically */
     gap: 10px; /* Adds spacing between label and input */
+}
+
+.task-line {
+    display: flex;
+    margin-bottom: 10px;
 }
 
 
