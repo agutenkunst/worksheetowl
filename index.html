@@ -16,10 +16,16 @@
         <div id="icon"><img src="src/imgs/worksheet-owl.png" alt="Owl Icon" class="owl-icon" style="width: 400px; height: auto;"></div>
         <div id="icon-print"><img src="src/imgs/worksheet-owl.png" alt="Owl Icon" class="owl-icon" style="width: 150px; height: auto;"></div>
         <form id="task-form">
-            <label for="max-result">Enter maximum result:</label>
-            <input type="number" id="max-result" class="small-input" value="20" required>
-            <button type="submit">Re-Generate Tasks</button>
-        </form>
+    <div class="form-group">
+        <label for="max-result">Max result:</label>
+        <input type="number" id="max-result" class="small-input" value="20" required>
+    </div>
+    <div class="form-group">
+        <div id="enable-add" class="button-div active">Addition</div>
+        <div id="enable-minus" class="button-div">Subtraction</div>
+    </div>
+    <div id="generate-tasks" class="button-div">Re-Generate Tasks</div>
+</form>
         <div id="tasks"></div>
         <div id="footer"></div>
     </div>
