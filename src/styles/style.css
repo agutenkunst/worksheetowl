@@ -117,15 +117,15 @@ button:hover {
     max-width: 400px;
 }
 
-#task-form {
+#control-elments {
     display: flex;
     flex-direction: column;
     gap: 10px; /* Adds spacing between elements */
     align-items: flex-start; /* Aligns elements to the left */
 }
 
-#task-form button,
-#task-form .button-div {
+#control-elments button,
+#control-elments .button-div {
     align-self: stretch; /* Makes buttons take full width */
 }
 
@@ -139,6 +139,9 @@ button:hover {
 @media print {
     h1, 
     form {
+        display: none;
+    }
+    .no-print {
         display: none;
     }
     #icon {
