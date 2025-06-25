@@ -5,16 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxResultInput = document.getElementById('max-result');
     const tasksContainer = document.getElementById('tasks');
 
-    // Get the seed from the URL or generate a random one
+    // Get the seed and types from the URL or set defaults
     const urlParams = new URLSearchParams(window.location.search);
-    let seed = urlParams.get('seed');
-    if (!seed) {
-        seed = generateRandomSeed();
-        updateUrl(seed)
-    }
+    let seed = urlParams.get('seed') || generateRandomSeed();
+    const typesFromUrl = urlParams.get('types') ? urlParams.get('types').split('-') : ['add'];
+
+    // Activate buttons based on URL types
+    activateCalculationTypes(typesFromUrl);
 
     generateTasks(getMaxResult(), new Math.seedrandom(seed), getCalculationTypes());
-    addFooter(seed);
+    updateUrl(seed);
 
     generateTasksBtn.addEventListener('click', (event) => {
         event.preventDefault();
@@ -23,16 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         generateTasks(getMaxResult(), new Math.seedrandom(seed), getCalculationTypes());
         updateUrl(seed);
-        addFooter(seed);
     });
 
     document.getElementById('enable-minus').addEventListener('click', function () {
         this.classList.toggle('active');
+        updateUrl(seed);
     });
 
     document.getElementById('enable-add').addEventListener('click', function () {
         this.classList.toggle('active');
+        console.log('Add button clicked');
+        updateUrl(seed);
     });
+
+    function activateCalculationTypes(types) {
+        if (types.includes('add')) {
+            document.getElementById('enable-add').classList.add('active');
+        }
+        if (types.includes('minus')) {
+            document.getElementById('enable-minus').classList.add('active');
+        }
+    }
 
     function getCalculationTypes() {
         const calculationTypes = [];
@@ -66,17 +77,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.floor(Math.random() * 1000000).toString();
     }
 
-    function addFooter(seed) {
+    function addFooter(urlParams) {
         const footer = document.getElementById('footer'); 
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('seed', seed);
-        footer.textContent = `Regenerate with: https://agutenkunst.github.io/worksheetowl/?seed=${seed}`;
+        footer.textContent = `Regenerate with: https://agutenkunst.github.io/worksheetowl/?${urlParams.toString()}`;
     }
 
     function updateUrl(seed) {
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('seed', seed);
+
+        // Add calculation types to the URL
+        const calculationTypes = getCalculationTypes();
+        urlParams.set('types', calculationTypes.join('-')); // Use '-' as the separator
+
+        // Logging the URL for debugging
+        console.log(`Updated URL: ${window.location.pathname}?${urlParams}`);
         window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`);
+
+        addFooter(urlParams);
     }
 
     function generateTasks(maxResult, rng, calculationTypes) {
@@ -92,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
             calculationTypeRandomList.push(...calculationTypes);
         }
         calculationTypeRandomList = randomizeList(calculationTypeRandomList);
-        console.log(calculationTypeRandomList);
 
         tasksContainer.innerHTML = '';
         for (let i = 0; i < nTasks; i++) {
