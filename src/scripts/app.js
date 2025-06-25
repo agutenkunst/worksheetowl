@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addFooter(urlParams) {
         const footer = document.getElementById('footer'); 
-        footer.textContent = `Regenerate with: https://agutenkunst.github.io/worksheetowl/?${urlParams.toString()}`;
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        footer.textContent = `Regenerate with: ${baseUrl}?${urlParams.toString()}`;
     }
 
     function updateUrl(seed) {
