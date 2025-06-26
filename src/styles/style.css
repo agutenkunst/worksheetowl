@@ -117,10 +117,6 @@ button:hover {
     margin-top: 10px;
 }
 
-.button-div:hover {
-    background-color: #b9b9b9a6;
-}
-
 .active {
     background-color: #5964fa;
 }
