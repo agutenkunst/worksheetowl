@@ -44,16 +44,6 @@ h1 {
     justify-content: center;
 }
 
-.answer {
-    flex: 1; /* Makes the element take up available space */
-    height: 50px; /* Ensures it takes the full height of the parent */
-    border: 1px solid #333; /* black border */
-    display: block; /* Ensures content inside is properly aligned */
-    align-items: center; /* Centers content vertically */
-    justify-content: center; /* Centers content horizontally */
-    max-width: 100px;
-}
-
 input[type="number"] {
     padding: 10px;
     margin: 10px 0;

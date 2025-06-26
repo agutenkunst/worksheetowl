@@ -118,12 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const taskLine = document.createElement('div');
             taskLine.className = 'task-line';
             const taskElement = document.createElement('div');
-            const answerElement = document.createElement('div');
-            answerElement.className = 'answer';
             taskElement.textContent = task;
             taskElement.className = 'task';
             taskLine.appendChild(taskElement);
-            taskLine.appendChild(answerElement);
             tasksContainer.appendChild(taskLine);
         }
     }
